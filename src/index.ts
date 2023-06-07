@@ -32,7 +32,7 @@ class User {
         return `apple${this.email}`
     }
 
-    // Expose private variables
+    // Expose private variablesb (access modifier)
     get courseCount(): number {
         return this._courseCount;
     }
@@ -44,6 +44,15 @@ class User {
         }
         this._courseCount = count;
     }
+}
+
+
+// Inheritance
+// Note: Private variables are not inherited
+// Note: Protected variables are inherited but not accessible outside the class
+class SubUser extends User {
+    isFamily: boolean = true;
+    changeCourseCount(){}
 }
 
 
