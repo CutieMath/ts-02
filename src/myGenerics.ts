@@ -28,3 +28,17 @@ identityFour<Bottle>({
     brand: "Gin",
     type: "Alcohol"
 })
+
+// 5. Return the type as the param type in array
+function getSearchProducts<T>(products: T[]): T {
+    // do some db operations
+    const myIndex = 3;
+    return products[myIndex];
+}
+
+// 6. Convert into arrow function 
+const getArrowFunctionSearchProducts = <T>(products: T[]): T => {
+    // do some db operations
+    const myIndex = 3;
+    return products[myIndex];
+}
