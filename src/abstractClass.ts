@@ -30,3 +30,8 @@ class InstaFromAbstract extends TakePic {
 
 const insta = new InstaFromAbstract("Normal", "Sepia", 1);
 insta.getReelTime();
+
+
+// A class can extend only one abstract class but can implement multiple interfaces.
+// In general, if you want to share only a contract without any implementation, then use an interface.
+// If you want to share a contract along with a partial or full implementation (or state, in terms of properties), then use an abstract class.
