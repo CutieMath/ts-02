@@ -42,3 +42,50 @@ const getArrowFunctionSearchProducts = <T>(products: T[]): T => {
     const myIndex = 3;
     return products[myIndex];
 }
+
+// 7. Take two types
+function anotherFunction<T, U extends number>(valOne: T, valTwo: U): object {
+    return {
+        valOne,
+        valTwo
+    }
+}
+anotherFunction("Hello", 2); // the second param must be a number
+
+
+// 8. Take two types with one extend custom defined type
+interface Database {
+    connection: string,
+    username: string,
+    password: string
+}
+
+function thirdFunction<T, U extends Database>(valOne: T, valTwo: U): object {
+    return {
+        valOne,
+        valTwo
+    }
+}
+thirdFunction("Hello", {connection: "test", username: "username", password: "password"})
+
+
+// 9. Handle multiple types
+interface Quiz {
+    name: string,
+    type: string,
+}
+interface Course {
+    name: string,
+    author: string,
+    subject: string,
+}
+// This can take both Quiz and Course types
+class Sellable<T> {
+    public cart: T[] = [];
+    addToCart(product: T){
+        this.cart.push(product);
+    }
+}
+
+
+
