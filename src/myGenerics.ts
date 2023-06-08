@@ -86,6 +86,3 @@ class Sellable<T> {
         this.cart.push(product);
     }
 }
-
-
-
