@@ -37,3 +37,50 @@ function isAdmin(account: User | Admin){
     } 
     return false;
 }
+
+
+// instanceof narrowing
+function logValue(x: Date | string){
+    if(x instanceof Date){
+        console.log(x.toUTCString());
+    } else {
+        console.log(x.toUpperCase());
+    }
+}
+
+
+// Type predications
+type Fish  = {
+    swim: () => void
+}
+type Bird = {
+    fly: () => void
+}
+// return boolean
+function isFish(pet: Fish | Bird){
+    return (pet as Fish).swim !== undefined;
+}
+// because the above function returns boolean, we don't know the type
+function getFood(pet: Fish | Bird){
+    if(isFish(pet)){
+        pet
+        return "Fish food";
+    } else {
+        pet
+        return "Bird food";
+    }
+}
+// return type
+function isFish2(pet: Fish | Bird): pet is Fish {
+    return (pet as Fish).swim !== undefined;
+}
+// now we can use this function to check type
+function getFood2(pet: Fish | Bird){
+    if(isFish2(pet)){
+        pet
+        return "Fish food";
+    } else {
+        pet
+        return "Bird food";
+    }
+}
