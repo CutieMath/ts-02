@@ -1,4 +1,4 @@
-// Simple way to check types
+// 1. Simple way to check types
 // However if we have number[] or string[], typeof will return 'object'
 function detectTypes(val: number | string){
     if(typeof val === 'string'){
@@ -10,7 +10,7 @@ function detectTypes(val: number | string){
 }
 
 
-// Cautionary tail
+// 2. Cautionary tail
 function provideId(id: string | null){
     if(!id){
         console.log("Please provide ID");
@@ -20,8 +20,7 @@ function provideId(id: string | null){
 }
 
 
-// In operator narrowing
-// Check custom types
+// 3. In operator narrowing
 interface User {
     name: string;
     email: string;
@@ -39,7 +38,7 @@ function isAdmin(account: User | Admin){
 }
 
 
-// instanceof narrowing
+// 4. Instanceof narrowing
 function logValue(x: Date | string){
     if(x instanceof Date){
         console.log(x.toUTCString());
@@ -49,7 +48,7 @@ function logValue(x: Date | string){
 }
 
 
-// Type predications
+// 5. Type predicates
 type Fish  = {
     swim: () => void
 }
@@ -82,5 +81,40 @@ function getFood2(pet: Fish | Bird){
     } else {
         pet
         return "Bird food";
+    }
+}
+
+
+// 6. Discriminated unions
+interface Circle {
+    kind: "circle",
+    radius: number
+}
+interface Square {
+    kind: "square",
+    side: number
+}
+interface Rectangle {
+    kind: "rectangle",
+    length: number,
+    width: number
+}
+
+type Shape = Circle | Square;
+function getShapeArea(shape: Shape){
+    if (shape.kind === "circle"){
+        return Math.PI * shape.radius ** 2;
+    }
+    return shape.side ** 2;
+}
+function getArea(shape: Shape){
+    switch(shape.kind){
+        case "circle":
+            return Math.PI * shape.radius ** 2;
+        case "square":
+            return shape.side ** 2;
+        default: 
+            const _exhaustiveCheck: never = shape; // The never type
+            return _exhaustiveCheck;
     }
 }
